@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  dev:
+    container_name: {{ cookiecutter.project_slug }}
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    environment:
+      - RUFF_CACHE_DIR=/tmp/.ruff_cache
+
+    volumes:
+      - .:/workspaces
+    working_dir: /workspaces
+    entrypoint: /workspaces/.devcontainer/entrypoint.sh
+    command: sleep infinity
